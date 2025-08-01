@@ -9,6 +9,7 @@ namespace FreeMediator
 	public interface IHandlerInvoker
 	{
 		Task<TResponse> Handle<TResponse>(IServiceProvider services, IRequest<TResponse> request, CancellationToken ct = default);
+		Task<object?> Handle(IServiceProvider services, object request, CancellationToken ct = default);
 	}
 
 	class HandlerInvoker : IHandlerInvoker
@@ -29,6 +30,17 @@ namespace FreeMediator
 			var result = _method.Invoke(handler, [request, ct]) ?? throw new Exception($"Method {_method.Name} in type {_handlerType} returned null which was not expected");
 
 			return await (Task<TResponse>)result;
+		}
+
+		public async Task<object?> Handle(IServiceProvider services, object request, CancellationToken ct = default)
+		{
+			var handler = services.GetRequiredService(_handlerType);
+
+			dynamic result = _method.Invoke(handler, [request, ct]) ?? throw new Exception($"Method {_method.Name} in type {_handlerType} returned null which was not expected");
+
+			object? taskResult = await result;
+
+			return taskResult;
 		}
 	}
 }

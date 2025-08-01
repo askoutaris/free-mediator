@@ -7,6 +7,7 @@ namespace FreeMediator
 	public interface IMediator
 	{
 		Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default);
+		Task<object?> Send(object request, CancellationToken ct = default);
 	}
 
 	public class Mediator : IMediator
@@ -21,6 +22,13 @@ namespace FreeMediator
 		}
 
 		public Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken ct = default)
+		{
+			var handler = _factory.Create(request);
+
+			return handler.Handle(_services, request, ct);
+		}
+
+		public Task<object?> Send(object request, CancellationToken ct = default)
 		{
 			var handler = _factory.Create(request);
 

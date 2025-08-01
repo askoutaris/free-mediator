@@ -10,10 +10,11 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/askoutaris/free-mediator</RepositoryUrl>
 		<PackageId>Free-Mediator</PackageId>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.7" />
 	</ItemGroup>
 
