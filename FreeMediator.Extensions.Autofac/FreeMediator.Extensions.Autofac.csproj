@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<LangVersion>9</LangVersion>
+		<Authors>Alkiviadis Skoutaris</Authors>
+		<Company>Alkiviadis Skoutaris</Company>
+		<Description>Extensions for FreeMediator to be used with Autofac dependency injection</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/askoutaris/free-mediator</RepositoryUrl>
+		<PackageId>Free-Mediator.Extensions.Autofac</PackageId>
+		<Version>1.0.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Autofac" Version="8.3.0" />
+	  <PackageReference Include="Free-Mediator" Version="1.0.1" />
+	</ItemGroup>
+</Project>
